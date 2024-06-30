@@ -17,7 +17,7 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
         super.initView()
         
         tvToDoLists.register(ToDoListTableViewCell.loadFromNib(), forCellReuseIdentifier: kToDoListTableViewCellID)
-        cvCategory.register(TaskCategoryCollectionViewCell.loadFromNib(), forCellWithReuseIdentifier: kTaskCategoryCollectionViewCellID)
+        cvCategory.register(TaskFilterCollectionViewCell.loadFromNib(), forCellWithReuseIdentifier: kTaskFilterCollectionViewCellID)
         
         viewModel.getListProcess()
     }
@@ -40,7 +40,7 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
             })
             .store(in: &aryBindings)
         
-        viewModel.$aryTaskCategoryViewModel
+        viewModel.$aryTaskFilterViewModel
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] _ in
                 self?.cvCategory.reloadData()
@@ -58,6 +58,14 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] seletedCatagory in
                 btnCategory.setTitle(seletedCatagory?.categoryName, for: .normal)
+                viewModel.updateDisplayToDoList()
+            })
+            .store(in: &aryBindings)
+        
+        viewModel.$arySelectedFilter
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] arySelected in
+                viewModel.updateDisplayToDoList()
             })
             .store(in: &aryBindings)
     }
@@ -91,13 +99,13 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.aryTaskCategoryViewModel.count
+        return viewModel.aryTaskFilterViewModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kTaskCategoryCollectionViewCellID, for: indexPath) as? TaskCategoryCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kTaskFilterCollectionViewCellID, for: indexPath) as? TaskFilterCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.binding(viewModel.aryTaskCategoryViewModel[indexPath.row])
+        cell.binding(viewModel.aryTaskFilterViewModel[indexPath.row])
         
         return cell
     }

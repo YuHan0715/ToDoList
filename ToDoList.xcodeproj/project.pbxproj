@@ -14,9 +14,9 @@
 		569EA04A2C2E210F0078939E /* GetOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EA0492C2E210F0078939E /* GetOption.swift */; };
 		569EA04C2C2E23A60078939E /* GetOption.json in Resources */ = {isa = PBXBuildFile; fileRef = 569EA04B2C2E23A60078939E /* GetOption.json */; };
 		569EA04E2C2E276E0078939E /* GetToDoTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EA04D2C2E276E0078939E /* GetToDoTasks.swift */; };
-		56A6146F2C2D99D6000A685E /* TaskCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A6146E2C2D99D6000A685E /* TaskCategoryCollectionViewCell.xib */; };
-		56A614702C2D99D6000A685E /* TaskCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6146D2C2D99D6000A685E /* TaskCategoryCollectionViewCell.swift */; };
-		56A614722C2D99E6000A685E /* TaskCategoryCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A614712C2D99E6000A685E /* TaskCategoryCollectionViewCellViewModel.swift */; };
+		56A6146F2C2D99D6000A685E /* TaskFilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A6146E2C2D99D6000A685E /* TaskFilterCollectionViewCell.xib */; };
+		56A614702C2D99D6000A685E /* TaskFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6146D2C2D99D6000A685E /* TaskFilterCollectionViewCell.swift */; };
+		56A614722C2D99E6000A685E /* TaskFilterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A614712C2D99E6000A685E /* TaskFilterCollectionViewCellViewModel.swift */; };
 		56A614752C2DC0AA000A685E /* ToDoListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A614742C2DC0A9000A685E /* ToDoListTableViewCell.xib */; };
 		56A614762C2DC0AA000A685E /* ToDoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A614732C2DC0A9000A685E /* ToDoListTableViewCell.swift */; };
 		56A614782C2DC0F5000A685E /* ToDoListTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A614772C2DC0F5000A685E /* ToDoListTableViewCellViewModel.swift */; };
@@ -75,9 +75,9 @@
 		569EA0492C2E210F0078939E /* GetOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetOption.swift; sourceTree = "<group>"; };
 		569EA04B2C2E23A60078939E /* GetOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetOption.json; sourceTree = "<group>"; };
 		569EA04D2C2E276E0078939E /* GetToDoTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetToDoTasks.swift; sourceTree = "<group>"; };
-		56A6146D2C2D99D6000A685E /* TaskCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		56A6146E2C2D99D6000A685E /* TaskCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		56A614712C2D99E6000A685E /* TaskCategoryCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		56A6146D2C2D99D6000A685E /* TaskFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		56A6146E2C2D99D6000A685E /* TaskFilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskFilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		56A614712C2D99E6000A685E /* TaskFilterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		56A614732C2DC0A9000A685E /* ToDoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewCell.swift; sourceTree = "<group>"; };
 		56A614742C2DC0A9000A685E /* ToDoListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoListTableViewCell.xib; sourceTree = "<group>"; };
 		56A614772C2DC0F5000A685E /* ToDoListTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -155,9 +155,9 @@
 		56A614662C2D95C3000A685E /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				56A6146D2C2D99D6000A685E /* TaskCategoryCollectionViewCell.swift */,
-				56A6146E2C2D99D6000A685E /* TaskCategoryCollectionViewCell.xib */,
-				56A614712C2D99E6000A685E /* TaskCategoryCollectionViewCellViewModel.swift */,
+				56A6146D2C2D99D6000A685E /* TaskFilterCollectionViewCell.swift */,
+				56A6146E2C2D99D6000A685E /* TaskFilterCollectionViewCell.xib */,
+				56A614712C2D99E6000A685E /* TaskFilterCollectionViewCellViewModel.swift */,
 				56A614732C2DC0A9000A685E /* ToDoListTableViewCell.swift */,
 				56A614742C2DC0A9000A685E /* ToDoListTableViewCell.xib */,
 				56A614772C2DC0F5000A685E /* ToDoListTableViewCellViewModel.swift */,
@@ -469,7 +469,7 @@
 				56EE33272C29980900E67746 /* Assets.xcassets in Resources */,
 				56627D442C30185200C6AF18 /* GetToDoTasks.json in Resources */,
 				56EE33552C299A7000E67746 /* LaunchScreen.strings in Resources */,
-				56A6146F2C2D99D6000A685E /* TaskCategoryCollectionViewCell.xib in Resources */,
+				56A6146F2C2D99D6000A685E /* TaskFilterCollectionViewCell.xib in Resources */,
 				56A77CE32C2B83E70053142F /* Localizable.strings in Resources */,
 				56EE335B2C299A7000E67746 /* Assets.xcassets in Resources */,
 				569EA04C2C2E23A60078939E /* GetOption.json in Resources */,
@@ -542,7 +542,7 @@
 				56A77CE92C2C3D970053142F /* Login.swift in Sources */,
 				56EE334F2C299A7000E67746 /* Networking.swift in Sources */,
 				56627D422C2FD1DE00C6AF18 /* PickerViewModel.swift in Sources */,
-				56A614722C2D99E6000A685E /* TaskCategoryCollectionViewCellViewModel.swift in Sources */,
+				56A614722C2D99E6000A685E /* TaskFilterCollectionViewCellViewModel.swift in Sources */,
 				56627D3F2C2FCFED00C6AF18 /* PickerViewController.swift in Sources */,
 				56EE33892C299B2000E67746 /* BaseViewController.swift in Sources */,
 				56EE335D2C299AA900E67746 /* AppDelegate.swift in Sources */,
@@ -561,7 +561,7 @@
 				569EA04A2C2E210F0078939E /* GetOption.swift in Sources */,
 				56EE2EE52C29A13A00C0E2F5 /* Codable+Extensions.swift in Sources */,
 				56EE33872C299B2000E67746 /* Combine+Extension.swift in Sources */,
-				56A614702C2D99D6000A685E /* TaskCategoryCollectionViewCell.swift in Sources */,
+				56A614702C2D99D6000A685E /* TaskFilterCollectionViewCell.swift in Sources */,
 				56EE33542C299A7000E67746 /* i18n.swift in Sources */,
 				56EE33512C299A7000E67746 /* Api.swift in Sources */,
 				56A77CE52C2C3C770053142F /* LibsManager.swift in Sources */,

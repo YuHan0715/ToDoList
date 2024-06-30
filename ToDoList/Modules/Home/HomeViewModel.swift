@@ -15,11 +15,12 @@ enum SortOptionType: String, CaseIterable {
 }
 
 class HomeViewModel: BaseViewModel {
-    @Published var aryTaskCategoryViewModel: [TaskCategoryCollectionViewCellViewModel]
+    @Published var aryTaskFilterViewModel: [TaskFilterCollectionViewCellViewModel] = []
     @Published var aryTaskListViewModel: [ToDoListTableViewCellViewModel] = []
     @Published var aryDisplayTask: [ToDoListTableViewCellViewModel] = []
     @Published var selectedCategory: CategoryInfo?
     @Published var selectedSort: SortOptionType?
+    @Published var arySelectedFilter: [FilterOptionType] = []
     var aryCategoryOptions: [CategoryInfo] = []
     var aryAllTasks: [TaskInfo] = []
     var sortPickerViewModel: PickerViewModel?
@@ -29,8 +30,8 @@ class HomeViewModel: BaseViewModel {
     
     override init(provider: YuHanAPI) {
         sortPickerViewModel = PickerViewModel(provider: provider, options: SortOptionType.allCases.map({ $0.rawValue }))
-        aryTaskCategoryViewModel = FilterOptionType.allCases.map({ TaskCategoryCollectionViewCellViewModel(type: $0) })
         super.init(provider: provider)
+        self.createTaskFilterViewModel()
     }
     
     func getListProcess() {
@@ -61,19 +62,32 @@ class HomeViewModel: BaseViewModel {
             }))
     }
     
-    func filterCategory() {
-        aryDisplayTask = aryAllTasks.filter({ $0.category == selectedCategory?.categoryCode }).map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
-        
-//        switch selectedSort {
-//        case .DueDate:
-//            aryDisplayTask.filter({ $0.taskInfo.dueDate})
-//        case .priority:
-//            <#code#>
-//        case .CreationDate:
-//            <#code#>
-//        case nil:
-//            <#code#>
-//        }
+    func updateDisplayToDoList () {
+        switchCategory()
+        filterOption()
+    }
+    
+    private func switchCategory() {
+        guard let selectedCategory = selectedCategory else { return }
+        if (selectedCategory.categoryCode == "000") {
+            aryDisplayTask = aryAllTasks.map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
+        } else {
+            aryDisplayTask = aryAllTasks.filter({ $0.category == selectedCategory.categoryCode }).map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
+        }
+    }
+    
+    private func filterOption() {
+        arySelectedFilter.forEach({ [unowned self] selectedType in
+            switch selectedType {
+            case .Completed:
+                aryDisplayTask = aryDisplayTask.filter({ $0.taskInfo.status == .Done })
+            case .Overdue:
+//                aryDisplayTask = ary
+                aryDisplayTask = aryDisplayTask
+            case .Priority:
+                aryDisplayTask = aryDisplayTask.filter({ $0.taskInfo.priority == .High })
+            }
+        })
     }
     
     private func createCategoryPickerModel() {
@@ -99,5 +113,22 @@ class HomeViewModel: BaseViewModel {
     
     private func createToDoTaskModel() {
         aryDisplayTask = aryAllTasks.map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
+    }
+    
+    private func createTaskFilterViewModel() {
+        aryTaskFilterViewModel = FilterOptionType.allCases.map({ type in
+            let taskFilterViewModel = TaskFilterCollectionViewCellViewModel(type: type)
+            taskFilterViewModel.$bDidSelected
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [unowned self] didSelected in
+                    if (didSelected) {
+                        arySelectedFilter.append(taskFilterViewModel.type)
+                    } else {
+                        arySelectedFilter = arySelectedFilter.filter{ $0 != type }
+                    }
+                })
+                .store(in: &aryBindings)
+            return taskFilterViewModel
+        })
     }
 }
