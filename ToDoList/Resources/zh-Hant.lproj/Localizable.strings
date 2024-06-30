@@ -1,0 +1,8 @@
+
+"Alert_Error_Title" = "提醒";
+"Alert_Confirm_Title" = "確認";
+"API_Error_StatusCode"           = "發生錯誤(%d)";
+
+"Login_Account_Placeholder" = "請輸入帳號";
+"Login_Password_Placeholder" = "請輸入密碼";
+"Login_Empty_Error" = "帳號/密碼不可為空";

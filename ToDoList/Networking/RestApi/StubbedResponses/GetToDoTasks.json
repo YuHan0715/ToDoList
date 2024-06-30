@@ -1,0 +1,62 @@
+{
+  "RetCode": "OK",
+  "RetMsg": "成功",
+  "Data": {
+    "tasks": [
+      {
+        "taskId": "001",
+        "title": "001Task",
+        "dueDate": "2024/06/20 20:00:00",
+        "createTime": "2024/05/31 00:00:00",
+        "priority": "0",
+        "category": "001",
+        "status": "0",
+        "isRepeat": true,
+        "repeatTime": 7,
+        "subtasks": [
+          "002",
+          "003"
+        ]
+      },
+      {
+        "taskId": "002",
+        "title": "002Task",
+        "description": "description",
+        "dueDate": "2024/09/20 04:50:00",
+        "createTime": "2024/02/10 090:00:50",
+        "priority": "1",
+        "category": "001",
+        "status": "0",
+        "isRepeat": true,
+        "repeatTime": 30,
+        "subtasks": [
+          "003"
+        ]
+      },
+      {
+        "taskId": "003",
+        "title": "003Task",
+        "description": "description",
+        "dueDate": "2023/07/14 07:09:37",
+        "createTime": "2023/01/29 21:04:24",
+        "priority": "0",
+        "category": "001",
+        "status": "2",
+        "isRepeat": false,
+        "subtasks": []
+      },
+      {
+        "taskId": "004",
+        "title": "004Task",
+        "description": "description",
+        "dueDate": "2024/01/20 13:49:41",
+        "createTime": "2024/01/10 17:31:36",
+        "priority": "2",
+        "category": "002",
+        "status": "2",
+        "isRepeat": false,
+        "subtasks": ["001"]
+      }
+    ]
+  }
+}

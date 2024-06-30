@@ -1,0 +1,34 @@
+{
+  "RetCode": "OK",
+  "RetMsg": "成功",
+  "Data": {
+    "categories": [
+      {
+        "categoryName": "全部",
+        "categoryCode": "000"
+      },
+      {
+        "categoryName": "個人",
+        "categoryCode": "001"
+      },
+      {
+        "categoryName": "工作",
+        "categoryCode": "002"
+      }
+    ],
+    "filterOptions": [
+      {
+        "optionsName": "已完成",
+        "optionCode": "000"
+      },
+      {
+        "optionsName": "逾期",
+        "optionCode": "001"
+      },
+      {
+        "optionsName": "高優先級",
+        "optionCode": "002"
+      }
+    ]
+  }
+}
