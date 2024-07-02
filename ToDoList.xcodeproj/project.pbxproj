@@ -26,6 +26,9 @@
 		56A77CE92C2C3D970053142F /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A77CE82C2C3D970053142F /* Login.swift */; };
 		56A77CEB2C2C3F1C0053142F /* Bunld+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A77CEA2C2C3F1C0053142F /* Bunld+Extension.swift */; };
 		56A77CED2C2C3F5A0053142F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A77CEC2C2C3F5A0053142F /* URL+Extension.swift */; };
+		56A7DD362C33648C00E6A30D /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD352C33648C00E6A30D /* DateManager.swift */; };
+		56A7DD382C33661200E6A30D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD372C33661200E6A30D /* String+Extension.swift */; };
+		56A7DD3A2C33699F00E6A30D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD392C33699F00E6A30D /* Date+Extension.swift */; };
 		56E238222C30356600B9D1EF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E238212C30356600B9D1EF /* UIColor+Extension.swift */; };
 		56EE2EE52C29A13A00C0E2F5 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE2EE42C29A13A00C0E2F5 /* Codable+Extensions.swift */; };
 		56EE2EE92C2A280B00C0E2F5 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE2EE82C2A280B00C0E2F5 /* LoginViewController.xib */; };
@@ -87,6 +90,9 @@
 		56A77CE82C2C3D970053142F /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		56A77CEA2C2C3F1C0053142F /* Bunld+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bunld+Extension.swift"; sourceTree = "<group>"; };
 		56A77CEC2C2C3F5A0053142F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		56A7DD352C33648C00E6A30D /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		56A7DD372C33661200E6A30D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		56A7DD392C33699F00E6A30D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		56E238212C30356600B9D1EF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		56EE2EE42C29A13A00C0E2F5 /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		56EE2EE72C2A280B00C0E2F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +354,8 @@
 				56A77CEA2C2C3F1C0053142F /* Bunld+Extension.swift */,
 				56A77CEC2C2C3F5A0053142F /* URL+Extension.swift */,
 				56E238212C30356600B9D1EF /* UIColor+Extension.swift */,
+				56A7DD372C33661200E6A30D /* String+Extension.swift */,
+				56A7DD392C33699F00E6A30D /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -372,6 +380,7 @@
 				56EE33782C299B2000E67746 /* Reachability.swift */,
 				56EE33792C299B2000E67746 /* SecurityManager.swift */,
 				56A77CE42C2C3C770053142F /* LibsManager.swift */,
+				56A7DD352C33648C00E6A30D /* DateManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -530,12 +539,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				56EE2EEA2C2A280B00C0E2F5 /* LoginViewController.swift in Sources */,
+				56A7DD3A2C33699F00E6A30D /* Date+Extension.swift in Sources */,
 				56EE338C2C299B2000E67746 /* CoreManager.swift in Sources */,
 				56EE33862C299B2000E67746 /* Combine+ControlEvent.swift in Sources */,
 				56E238222C30356600B9D1EF /* UIColor+Extension.swift in Sources */,
 				56EE338A2C299B2000E67746 /* BaseViewModel.swift in Sources */,
 				56EE33502C299A7000E67746 /* RestApi.swift in Sources */,
 				56EE338D2C299B2000E67746 /* LanguageManager.swift in Sources */,
+				56A7DD362C33648C00E6A30D /* DateManager.swift in Sources */,
 				56EE338F2C299B2000E67746 /* SecurityManager.swift in Sources */,
 				56EE335A2C299A7000E67746 /* Navigator.swift in Sources */,
 				56EE339D2C299EE100E67746 /* Application.swift in Sources */,
@@ -570,6 +581,7 @@
 				56A614782C2DC0F5000A685E /* ToDoListTableViewCellViewModel.swift in Sources */,
 				56A77CEB2C2C3F1C0053142F /* Bunld+Extension.swift in Sources */,
 				56A614762C2DC0AA000A685E /* ToDoListTableViewCell.swift in Sources */,
+				56A7DD382C33661200E6A30D /* String+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

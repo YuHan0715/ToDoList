@@ -68,6 +68,14 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
                 viewModel.updateDisplayToDoList()
             })
             .store(in: &aryBindings)
+        
+        viewModel.$selectedSort
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] sortOption in
+                guard let sortOption = sortOption else { return }
+                viewModel.sortToDoList(sortOption)
+            })
+            .store(in: &aryBindings)
     }
     
     private func showPicker(_ pickerViewModel: PickerViewModel) {

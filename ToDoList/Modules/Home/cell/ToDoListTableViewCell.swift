@@ -36,7 +36,7 @@ class ToDoListTableViewCell: UITableViewCell {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] info in
                 lbTitle.text = info.title
-                lbDueDate.text = info.dueDate
+                lbDueDate.text = info.dueDate.strDateFormatConverter(.apiResponseDate, .dashDate)
                 switch info.priority {
                 case .High:
                     vBackground.backgroundColor = UIColor.highPriorityColor

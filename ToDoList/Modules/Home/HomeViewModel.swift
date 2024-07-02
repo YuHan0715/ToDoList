@@ -28,11 +28,15 @@ class HomeViewModel: BaseViewModel {
     
     var aryBindings = Set<AnyCancellable>()
     
+    
+    // MARK: - init
     override init(provider: YuHanAPI) {
-        sortPickerViewModel = PickerViewModel(provider: provider, options: SortOptionType.allCases.map({ $0.rawValue }))
         super.init(provider: provider)
         self.createTaskFilterViewModel()
+        self.createSortPickerModel()
     }
+    
+    // MARK: Public Func
     
     func getListProcess() {
         Publishers
@@ -67,6 +71,20 @@ class HomeViewModel: BaseViewModel {
         filterOption()
     }
     
+    func sortToDoList(_ type: SortOptionType) {
+        switch type {
+        case .CreationDate:
+            aryDisplayTask = aryDisplayTask.sorted(by: { (task1, task2) in
+                guard let createTime1 = task1.taskInfo.createTime.strDateToDate(format: .apiResponseDate), let createTime2 = task2.taskInfo.createTime.strDateToDate(format: .apiResponseDate) else { return false }
+                return createTime1 < createTime2
+            })
+        case .DueDate: break
+        case .priority: break
+        }
+    }
+    
+    
+    // MARK: Private Func
     private func switchCategory() {
         guard let selectedCategory = selectedCategory else { return }
         if (selectedCategory.categoryCode == "000") {
@@ -82,8 +100,10 @@ class HomeViewModel: BaseViewModel {
             case .Completed:
                 aryDisplayTask = aryDisplayTask.filter({ $0.taskInfo.status == .Done })
             case .Overdue:
-//                aryDisplayTask = ary
-                aryDisplayTask = aryDisplayTask
+                aryDisplayTask = aryDisplayTask.filter({ viewModel in
+                    guard let dueDate =  viewModel.taskInfo.dueDate.strDateToDate(format: .apiResponseDate) else { return false }
+                    return dueDate.compare(Date()) == .orderedAscending
+                })
             case .Priority:
                 aryDisplayTask = aryDisplayTask.filter({ $0.taskInfo.priority == .High })
             }
@@ -101,7 +121,7 @@ class HomeViewModel: BaseViewModel {
             .store(in: &aryBindings)
     }
     
-    private func createSortPickerMode() {
+    private func createSortPickerModel() {
         sortPickerViewModel = PickerViewModel(provider: provider, options: SortOptionType.allCases.map({ $0.rawValue }))
         sortPickerViewModel?.didSelectedItem
             .receive(on: DispatchQueue.main)
