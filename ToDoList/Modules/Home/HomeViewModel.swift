@@ -16,7 +16,6 @@ enum SortOptionType: String, CaseIterable {
 
 class HomeViewModel: BaseViewModel {
     @Published var aryTaskFilterViewModel: [TaskFilterCollectionViewCellViewModel] = []
-    @Published var aryTaskListViewModel: [ToDoListTableViewCellViewModel] = []
     @Published var aryDisplayTask: [ToDoListTableViewCellViewModel] = []
     @Published var selectedCategory: CategoryInfo?
     @Published var selectedSort: SortOptionType?
@@ -74,12 +73,20 @@ class HomeViewModel: BaseViewModel {
     func sortToDoList(_ type: SortOptionType) {
         switch type {
         case .CreationDate:
-            aryDisplayTask = aryDisplayTask.sorted(by: { (task1, task2) in
-                guard let createTime1 = task1.taskInfo.createTime.strDateToDate(format: .apiResponseDate), let createTime2 = task2.taskInfo.createTime.strDateToDate(format: .apiResponseDate) else { return false }
-                return createTime1 < createTime2
+            aryDisplayTask.sort(by: { (lhs, rhs) in
+                guard let lhsCreatTime = lhs.taskInfo.createTime.strDateToDate(format: .apiResponseDate),
+                      let rhsCreaTime = rhs.taskInfo.createTime.strDateToDate(format: .apiResponseDate) else { return false }
+                return lhsCreatTime < rhsCreaTime
             })
-        case .DueDate: break
-        case .priority: break
+        case .DueDate:
+            aryDisplayTask.sort(by: { (lhs, rhs) in
+                guard let lhsDueDate = lhs.taskInfo.dueDate.strDateToDate(format: .apiResponseDate),
+                      let rhsDueDate = rhs.taskInfo.dueDate.strDateToDate(format: .apiResponseDate) else {
+                    return false }
+                return lhsDueDate < rhsDueDate
+            })
+        case .priority: 
+            aryDisplayTask.sort(by: { $0.taskInfo.priority.rawValue < $1.taskInfo.priority.rawValue })
         }
     }
     
