@@ -13,6 +13,7 @@ class Navigator {
     enum Scene {
         case login(viewModel: LoginViewModel)
         case home(viewModel: HomeViewModel)
+        case editTask(viewModel: EditTaskViewControllerViewModel)
         case alert(description: String?)
         case picker(viewModel: PickerViewModel)
         /// (外開)手機設定
@@ -44,6 +45,10 @@ class Navigator {
             
         case .home(let viewModel):
             let vc = HomeViewController(viewModel: viewModel, navigator: self)
+            return NavigationController(rootViewController: vc)
+            
+        case .editTask(let viewModel):
+            let vc = EditTaskViewController(viewModel: viewModel, navigator: self)
             return vc
             
         case .alert(let description):

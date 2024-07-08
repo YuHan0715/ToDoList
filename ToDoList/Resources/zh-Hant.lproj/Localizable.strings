@@ -6,3 +6,18 @@
 "Login_Account_Placeholder" = "請輸入帳號";
 "Login_Password_Placeholder" = "請輸入密碼";
 "Login_Empty_Error" = "帳號/密碼不可為空";
+
+"Home_Search_Placeholder" = "請輸入關鍵字";
+
+"Edit_Title" = "任務標題";
+"Edit_Title_Placeholder" = "請輸入任務標題";
+"Edit_DueDate" = "到期時間";
+"Edit_DueDate_Placeholder" = "請選擇到期時間";
+"Edit_Category" = "分類";
+"Edit_Category_Placeholder" = "請選擇分類";
+"Edit_Priority" = "任務優先度";
+"Edit_Priority_Placeholder" = "請選擇任務優先度";
+"Edit_SubTask" = "子任務";
+"Edit_SubTask_Placeholder" = "請選擇子任務";
+"Edit_Description" = "任務描述";
+"Edit_Description_Placeholder" = "請輸入任務描述";

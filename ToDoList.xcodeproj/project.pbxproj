@@ -31,6 +31,9 @@
 		56A7DD3A2C33699F00E6A30D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD392C33699F00E6A30D /* Date+Extension.swift */; };
 		56B4DE462C37D56E00A51CC3 /* UpdateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */; };
 		56B4DE482C37D7FE00A51CC3 /* UpdateTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */; };
+		56DA70942C3B510600CA14CE /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DA70922C3B510600CA14CE /* EditTaskViewController.swift */; };
+		56DA70952C3B510600CA14CE /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DA70932C3B510600CA14CE /* EditTaskViewController.xib */; };
+		56DA70972C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DA70962C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift */; };
 		56E238222C30356600B9D1EF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E238212C30356600B9D1EF /* UIColor+Extension.swift */; };
 		56EE2EE52C29A13A00C0E2F5 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE2EE42C29A13A00C0E2F5 /* Codable+Extensions.swift */; };
 		56EE2EE92C2A280B00C0E2F5 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE2EE82C2A280B00C0E2F5 /* LoginViewController.xib */; };
@@ -97,6 +100,9 @@
 		56A7DD392C33699F00E6A30D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTask.swift; sourceTree = "<group>"; };
 		56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UpdateTask.json; sourceTree = "<group>"; };
+		56DA70922C3B510600CA14CE /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		56DA70932C3B510600CA14CE /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTaskViewController.xib; sourceTree = "<group>"; };
+		56DA70962C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewControllerViewModel.swift; sourceTree = "<group>"; };
 		56E238212C30356600B9D1EF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		56EE2EE42C29A13A00C0E2F5 /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		56EE2EE72C2A280B00C0E2F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +166,16 @@
 				56627D412C2FD1DE00C6AF18 /* PickerViewModel.swift */,
 			);
 			path = Picker;
+			sourceTree = "<group>";
+		};
+		5698E1E32C34B9E8001D2717 /* EditTask */ = {
+			isa = PBXGroup;
+			children = (
+				56DA70922C3B510600CA14CE /* EditTaskViewController.swift */,
+				56DA70932C3B510600CA14CE /* EditTaskViewController.xib */,
+				56DA70962C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift */,
+			);
+			path = EditTask;
 			sourceTree = "<group>";
 		};
 		56A614662C2D95C3000A685E /* cell */ = {
@@ -482,6 +498,7 @@
 				56EE2EF02C2A2B5A00C0E2F5 /* LoadingViewController.xib in Resources */,
 				56EE2EE92C2A280B00C0E2F5 /* LoginViewController.xib in Resources */,
 				56A614752C2DC0AA000A685E /* ToDoListTableViewCell.xib in Resources */,
+				56DA70952C3B510600CA14CE /* EditTaskViewController.xib in Resources */,
 				56EE33272C29980900E67746 /* Assets.xcassets in Resources */,
 				56627D442C30185200C6AF18 /* GetToDoTasks.json in Resources */,
 				56EE33552C299A7000E67746 /* LaunchScreen.strings in Resources */,
@@ -568,6 +585,7 @@
 				56EE33882C299B2000E67746 /* CombineControlProperty.swift in Sources */,
 				56EE338E2C299B2000E67746 /* Reachability.swift in Sources */,
 				569EA04E2C2E276E0078939E /* GetToDoTasks.swift in Sources */,
+				56DA70972C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift in Sources */,
 				56EE33532C299A7000E67746 /* Files.swift in Sources */,
 				56EE2EF12C2A2B5A00C0E2F5 /* LoadingViewController.swift in Sources */,
 				56EE2EF52C2A2D0600C0E2F5 /* UIView+Extension.swift in Sources */,
@@ -577,6 +595,7 @@
 				56EE33802C299B2000E67746 /* HomeViewModel.swift in Sources */,
 				56EE2EEC2C2A282000C0E2F5 /* LoginViewModel.swift in Sources */,
 				56EE334E2C299A7000E67746 /* ToDoListApi.swift in Sources */,
+				56B4DE462C37D56E00A51CC3 /* UpdateTask.swift in Sources */,
 				569EA04A2C2E210F0078939E /* GetOption.swift in Sources */,
 				56EE2EE52C29A13A00C0E2F5 /* Codable+Extensions.swift in Sources */,
 				56EE33872C299B2000E67746 /* Combine+Extension.swift in Sources */,
@@ -590,6 +609,7 @@
 				56A77CEB2C2C3F1C0053142F /* Bunld+Extension.swift in Sources */,
 				56A614762C2DC0AA000A685E /* ToDoListTableViewCell.swift in Sources */,
 				56A7DD382C33661200E6A30D /* String+Extension.swift in Sources */,
+				56DA70942C3B510600CA14CE /* EditTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
