@@ -29,6 +29,8 @@
 		56A7DD362C33648C00E6A30D /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD352C33648C00E6A30D /* DateManager.swift */; };
 		56A7DD382C33661200E6A30D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD372C33661200E6A30D /* String+Extension.swift */; };
 		56A7DD3A2C33699F00E6A30D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD392C33699F00E6A30D /* Date+Extension.swift */; };
+		56B4DE462C37D56E00A51CC3 /* UpdateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */; };
+		56B4DE482C37D7FE00A51CC3 /* UpdateTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */; };
 		56E238222C30356600B9D1EF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E238212C30356600B9D1EF /* UIColor+Extension.swift */; };
 		56EE2EE52C29A13A00C0E2F5 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE2EE42C29A13A00C0E2F5 /* Codable+Extensions.swift */; };
 		56EE2EE92C2A280B00C0E2F5 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56EE2EE82C2A280B00C0E2F5 /* LoginViewController.xib */; };
@@ -93,6 +95,8 @@
 		56A7DD352C33648C00E6A30D /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		56A7DD372C33661200E6A30D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		56A7DD392C33699F00E6A30D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTask.swift; sourceTree = "<group>"; };
+		56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UpdateTask.json; sourceTree = "<group>"; };
 		56E238212C30356600B9D1EF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		56EE2EE42C29A13A00C0E2F5 /* Codable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		56EE2EE72C2A280B00C0E2F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 		56EE33342C299A7000E67746 /* StubbedResponses */ = {
 			isa = PBXGroup;
 			children = (
+				56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */,
 				56A77CE62C2C3D7B0053142F /* Login.json */,
 				569EA04B2C2E23A60078939E /* GetOption.json */,
 				56627D432C30185200C6AF18 /* GetToDoTasks.json */,
@@ -310,6 +315,7 @@
 				56A77CE82C2C3D970053142F /* Login.swift */,
 				569EA0492C2E210F0078939E /* GetOption.swift */,
 				569EA04D2C2E276E0078939E /* GetToDoTasks.swift */,
+				56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 			children = (
 				56EE2EE62C2A27B600C0E2F5 /* Login */,
 				56EE33982C299DD500E67746 /* Base.lproj */,
+				5698E1E32C34B9E8001D2717 /* EditTask */,
 				56EE33652C299B2000E67746 /* Home */,
 			);
 			path = Modules;
@@ -484,6 +491,7 @@
 				569EA04C2C2E23A60078939E /* GetOption.json in Resources */,
 				56EE339B2C299DE500E67746 /* LaunchScreen.storyboard in Resources */,
 				56EE337F2C299B2000E67746 /* HomeViewController.xib in Resources */,
+				56B4DE482C37D7FE00A51CC3 /* UpdateTask.json in Resources */,
 				56627D402C2FCFED00C6AF18 /* PickerViewController.xib in Resources */,
 				56EE33562C299A7000E67746 /* Main.strings in Resources */,
 			);

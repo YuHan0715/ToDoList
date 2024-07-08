@@ -28,8 +28,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ao2-42-WDK">
                     <rect key="frame" x="20" y="68" width="374" height="59"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAh-Yy-KYe">
+                            <rect key="frame" x="30" y="49" width="290" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="fth-4m-fQN"/>
+                            </constraints>
+                        </view>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UUj-Se-wjS">
-                            <rect key="frame" x="316" y="10" width="4" height="39"/>
+                            <rect key="frame" x="30" y="10" width="290" height="39"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -45,10 +52,14 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="Zag-nq-hls" firstAttribute="leading" secondItem="UUj-Se-wjS" secondAttribute="trailing" constant="15" id="48h-ux-ScH"/>
+                        <constraint firstItem="UUj-Se-wjS" firstAttribute="leading" secondItem="ao2-42-WDK" secondAttribute="leading" constant="30" id="5RN-ha-eJY"/>
                         <constraint firstAttribute="bottom" secondItem="UUj-Se-wjS" secondAttribute="bottom" constant="10" id="B1Z-PJ-Prj"/>
                         <constraint firstItem="Zag-nq-hls" firstAttribute="height" secondItem="ao2-42-WDK" secondAttribute="height" multiplier="0.661017" id="ZIP-Hu-F9l"/>
+                        <constraint firstItem="lAh-Yy-KYe" firstAttribute="leading" secondItem="UUj-Se-wjS" secondAttribute="leading" id="bSb-hb-i0g"/>
+                        <constraint firstItem="lAh-Yy-KYe" firstAttribute="top" secondItem="UUj-Se-wjS" secondAttribute="bottom" id="eEY-Ry-lQT"/>
                         <constraint firstAttribute="trailing" secondItem="Zag-nq-hls" secondAttribute="trailing" id="jQu-Gw-vOF"/>
                         <constraint firstItem="UUj-Se-wjS" firstAttribute="top" secondItem="ao2-42-WDK" secondAttribute="top" constant="10" id="mbZ-xe-0aV"/>
+                        <constraint firstItem="lAh-Yy-KYe" firstAttribute="trailing" secondItem="UUj-Se-wjS" secondAttribute="trailing" id="oUm-Xg-2Gt"/>
                         <constraint firstItem="Zag-nq-hls" firstAttribute="centerY" secondItem="ao2-42-WDK" secondAttribute="centerY" id="yy7-9O-jxA"/>
                     </constraints>
                 </view>

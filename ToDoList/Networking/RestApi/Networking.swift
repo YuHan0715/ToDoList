@@ -117,6 +117,7 @@ struct YuHanNetworking: NetworkingType {
     
     func request<Response: Decodable>(_ request: T, response: Response.Type) -> AnyPublisher<BaseResponse<Response>, Error> {
         print("APISEND \(request.path)")
+        print("Request:\n\(request.parameters)")
         let actualRequest = self.provider
             .request(request)
             .map(BaseResponse<Response>.self)

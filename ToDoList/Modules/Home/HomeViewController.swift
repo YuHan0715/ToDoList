@@ -18,6 +18,7 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
         
         tvToDoLists.register(ToDoListTableViewCell.loadFromNib(), forCellReuseIdentifier: kToDoListTableViewCellID)
         cvCategory.register(TaskFilterCollectionViewCell.loadFromNib(), forCellWithReuseIdentifier: kTaskFilterCollectionViewCellID)
+        tfSearch.placeholder = i18n.Home.Search_Placeholder
         
         viewModel.getListProcess()
     }
@@ -37,6 +38,14 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
             .sink(receiveValue: { [unowned self] in
                 guard let pickerViewModel = viewModel.categoryPickerViewModel else { return } // TODO: Show aler to description category is empty
                 showPicker(pickerViewModel)
+            })
+            .store(in: &aryBindings)
+        tfSearch.textPublisher
+            .receive(on: DispatchQueue.main)
+            .replaceNil(with: "")
+            .sink(receiveValue: { [unowned self] searchWord in
+                viewModel.strSearchWord = searchWord
+                viewModel.updateDisplayToDoList()
             })
             .store(in: &aryBindings)
         
@@ -76,6 +85,18 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
                 viewModel.sortToDoList(sortOption)
             })
             .store(in: &aryBindings)
+        
+        viewModel.updateSuccess
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] in
+                changeNextAction(segue: .alert(description: "更新成功"), transition: .alert)
+            })
+            .store(in: &aryBindings)
+    }
+    
+    private func showEditTask() {
+        let editTaskViewModel = EditTaskViewControllerViewModel(provider: viewModel.provider)
+        navigator.show(segue: .editTask(viewModel: editTaskViewModel), sender: self)
     }
     
     private func showPicker(_ pickerViewModel: PickerViewModel) {
@@ -86,6 +107,11 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("-----didSelectRowAt-----")
+        showEditTask()
     }
 }
 
@@ -98,6 +124,46 @@ extension HomeViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: kToDoListTableViewCellID, for: indexPath) as? ToDoListTableViewCell else { return UITableViewCell() }
         cell.binding(viewModel.aryDisplayTask[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "delete") { [weak self] (action, view, completionHandler) in
+            self?.viewModel.deleteDisplayTask(task: self?.viewModel.aryDisplayTask[indexPath.row].taskInfo)
+            completionHandler(true)
+        }
+        deleteAction.backgroundColor = .systemRed
+        
+        let editAction = UIContextualAction(style: .normal, title: "edit") { (action, view, completionHandler) in
+            self.showEditTask()
+            completionHandler(true)
+        }
+        editAction.backgroundColor = .darkGray
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let task = viewModel.aryDisplayTask[indexPath.row].taskInfo
+        let repeatEveryDay = UIContextualAction(style: .normal, title: "EveryDay") { [weak self] (action, view, completionHandler) in
+            self?.viewModel.setRepeat(task: task, repeatDay: 1)
+            completionHandler(true)
+        }
+        
+        let repeatEveryWeek = UIContextualAction(style: .normal, title: "EveryWeek") { [weak self] (action, view, completionHandler) in
+            self?.viewModel.setRepeat(task: task, repeatDay: 7)
+            completionHandler(true)
+        }
+        
+        let repeatEveryMon = UIContextualAction(style: .normal, title: "EveryMonth") { [weak self] (action, view, completionHandler) in
+            self?.viewModel.setRepeat(task: task, repeatDay: 30)
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [repeatEveryDay, repeatEveryWeek, repeatEveryMon])
     }
 }
 

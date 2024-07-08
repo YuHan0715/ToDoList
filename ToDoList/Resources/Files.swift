@@ -17,5 +17,7 @@ struct Files {
         static var GetOption: Data? { Bundle.main.data(forJsonResource: "GetOption") }
         
         static var GetToDoList: Data? { Bundle.main.data(forJsonResource: "GetToDoTasks") }
+        
+        static var UpdateTask: Data? { Bundle.main.data(forJsonResource: "UpdateTask") }
     }
 }

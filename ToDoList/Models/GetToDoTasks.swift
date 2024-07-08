@@ -15,7 +15,7 @@ struct GetToDoTasksResponse: Decodable {
     let tasks: [TaskInfo]
 }
 
-struct TaskInfo: Decodable {
+struct TaskInfo: Decodable, Encodable {
     let taskId: String
     
     let title: String
@@ -30,11 +30,11 @@ struct TaskInfo: Decodable {
     
     let category: String
     
-    let status: TaskStatus
+    var status: TaskStatus
     
-    let isRepeat: Bool
+    var isRepeat: Bool
     
-    let repeatTime: Int?
+    var repeatTime: Int?
     
     let subtasks: [String]
 }
@@ -53,4 +53,6 @@ enum TaskStatus: String, Codable {
 //    case InProgress = "1"
     
     case Done = "2"
+    
+    case Delete = "3"
 }

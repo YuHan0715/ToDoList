@@ -10,7 +10,7 @@
         "createTime": "2024-05-31 00:00:00",
         "priority": "0",
         "category": "001",
-        "status": "0",
+        "status": "3",
         "isRepeat": true,
         "repeatTime": 7,
         "subtasks": [

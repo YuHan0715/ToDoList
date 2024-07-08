@@ -17,6 +17,10 @@ class RestApi: YuHanAPI {
         return yuhanRequestObject(.getToDoTasks(request: request), type: GetToDoTasksResponse.self)
     }
     
+    func updateTask(request: UpdateTaskRequest) -> AnyPublisher<UpdateTaskResponse?, any Error> {
+        return yuhanRequestObject(.updateTask(request: request), type: UpdateTaskResponse.self)
+    }
+    
     // 根據不然的站台使用不同的Provider
     var yuhanProvider: YuHanNetworking
     

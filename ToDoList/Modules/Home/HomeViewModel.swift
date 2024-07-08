@@ -20,10 +20,13 @@ class HomeViewModel: BaseViewModel {
     @Published var selectedCategory: CategoryInfo?
     @Published var selectedSort: SortOptionType?
     @Published var arySelectedFilter: [FilterOptionType] = []
+    var strSearchWord: String = ""
     var aryCategoryOptions: [CategoryInfo] = []
     var aryAllTasks: [TaskInfo] = []
     var sortPickerViewModel: PickerViewModel?
     var categoryPickerViewModel: PickerViewModel?
+    
+    var updateSuccess = PassthroughSubject<Void, Never>()
     
     var aryBindings = Set<AnyCancellable>()
     
@@ -36,7 +39,6 @@ class HomeViewModel: BaseViewModel {
     }
     
     // MARK: Public Func
-    
     func getListProcess() {
         Publishers
             .Zip(
@@ -61,13 +63,37 @@ class HomeViewModel: BaseViewModel {
                 aryCategoryOptions = getOptionsResponse.categories
                 createCategoryPickerModel()
                 aryAllTasks = getTaskListRespsone.tasks
-                createToDoTaskModel()
+                aryDisplayTask = createToDoTaskModel(taskInfos: aryAllTasks)
+            }))
+    }
+    
+    func updateTask(_ info: TaskInfo) {
+        let req = UpdateTaskRequest(task: info)
+        provider.updateTask(request: req)
+            .handleEvents(receiveSubscription: { [unowned self] _ in
+                isLoading = true
+            }, receiveOutput: { [unowned self] _ in
+                isLoading = false
+            }, receiveCompletion: { [unowned self] _ in
+                isLoading = false
+            }, receiveCancel: { [unowned self] in
+                isLoading = false
+            })
+            .subscribe(Subscribers.Sink(receiveCompletion: { [unowned self] completion in
+                guard case let .failure(error) = completion else { return }
+                errorOccurredShowAlert.send(error)
+            }, receiveValue: { [unowned self] getTaskListRespsone in
+                guard let getTaskListRespsone = getTaskListRespsone else { return }
+                updateSuccess.send(())
+                aryDisplayTask = createToDoTaskModel(taskInfos: aryAllTasks)
+                
             }))
     }
     
     func updateDisplayToDoList () {
         switchCategory()
         filterOption()
+        filterListTitle()
     }
     
     func sortToDoList(_ type: SortOptionType) {
@@ -90,14 +116,33 @@ class HomeViewModel: BaseViewModel {
         }
     }
     
+    func deleteDisplayTask(task: TaskInfo?) {
+        if let index = aryAllTasks.firstIndex(where: { $0.taskId == task?.taskId }) {
+            aryAllTasks[index].status = .Delete
+            updateTask(aryAllTasks[index])
+        }
+    }
+    
+    func setRepeat(task: TaskInfo, repeatDay: Int) {
+        if let index = aryAllTasks.firstIndex(where: { $0.taskId == task.taskId }) {
+            aryAllTasks[index].isRepeat = true
+            aryAllTasks[index].repeatTime = repeatDay
+            updateTask(aryAllTasks[index])
+        }
+    }
+    
+    func filterListTitle() {
+        guard !strSearchWord.isEmpty else { return }
+        aryDisplayTask = aryDisplayTask.filter({ $0.taskInfo.title.lowercased().contains(strSearchWord.lowercased()) })
+    }
     
     // MARK: Private Func
     private func switchCategory() {
         guard let selectedCategory = selectedCategory else { return }
         if (selectedCategory.categoryCode == "000") {
-            aryDisplayTask = aryAllTasks.map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
+            aryDisplayTask = createToDoTaskModel(taskInfos: aryAllTasks)
         } else {
-            aryDisplayTask = aryAllTasks.filter({ $0.category == selectedCategory.categoryCode }).map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
+            aryDisplayTask = createToDoTaskModel(taskInfos: aryAllTasks.filter({ $0.category == selectedCategory.categoryCode }) )
         }
     }
     
@@ -138,8 +183,18 @@ class HomeViewModel: BaseViewModel {
             .store(in: &aryBindings)
     }
     
-    private func createToDoTaskModel() {
-        aryDisplayTask = aryAllTasks.map({ ToDoListTableViewCellViewModel(taskInfo: $0) })
+    private func createToDoTaskModel(taskInfos: [TaskInfo]) -> [ToDoListTableViewCellViewModel] {
+        return taskInfos.filter({ $0.status != .Delete }).map({ [unowned self] info in
+            let taskViewModel = ToDoListTableViewCellViewModel(taskInfo: info)
+            
+            taskViewModel.clickCheckButton
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [unowned self] in
+                    updateTask(taskViewModel.taskInfo)
+                })
+                .store(in: &aryBindings)
+            return taskViewModel
+        })
     }
     
     private func createTaskFilterViewModel() {

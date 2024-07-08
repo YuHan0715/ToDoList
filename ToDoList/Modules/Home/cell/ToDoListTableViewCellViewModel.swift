@@ -12,6 +12,7 @@ let kToDoListTableViewCellID = "ToDoListTableViewCellID"
 
 class ToDoListTableViewCellViewModel {
     @Published var taskInfo: TaskInfo
+    @Published var clickCheckButton = PassthroughSubject<Void, Never>()
     
     init(taskInfo: TaskInfo) {
         self.taskInfo = taskInfo

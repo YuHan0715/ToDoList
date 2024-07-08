@@ -12,6 +12,7 @@ class ToDoListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbDueDate: UILabel!
+    @IBOutlet weak var btnIsCompelete: UIButton!
     @IBOutlet weak var vBackground: UIView!
     
     var aryBindings = Set<AnyCancellable>()
@@ -20,6 +21,8 @@ class ToDoListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
         vBackground.addCornerRadius()
+        btnIsCompelete.setImage(.checked, for: .selected)
+        btnIsCompelete.setImage(.unchecked, for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,6 +48,15 @@ class ToDoListTableViewCell: UITableViewCell {
                 case .Low:
                     vBackground.backgroundColor = UIColor.LowPriorityColor
                 }
+                btnIsCompelete.isSelected = info.status == .Done
+            })
+            .store(in: &aryBindings)
+        
+        btnIsCompelete.publisher(for: .touchUpInside)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] in
+                viewModel.taskInfo.status = !btnIsCompelete.isSelected ? .Done : .NotStart
+                viewModel.clickCheckButton.send()
             })
             .store(in: &aryBindings)
     }

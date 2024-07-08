@@ -8,6 +8,7 @@ enum YuHanApi {
     case login(request: LoginRequest)
     case getOption(request: GetOptionRequest)
     case getToDoTasks(request: GetToDoTasksRequest)
+    case updateTask(request: UpdateTaskRequest)
 }
 
 extension YuHanApi: TargetType {
@@ -21,6 +22,7 @@ extension YuHanApi: TargetType {
         case .login: return "api/Login"
         case .getOption: return "api/getOption"
         case .getToDoTasks: return "api/getToDoTasks"
+        case .updateTask: return "api/updateTask"
         }
     }
     
@@ -28,7 +30,8 @@ extension YuHanApi: TargetType {
         switch self {
         case .login,
              .getOption,
-             .getToDoTasks:
+             .getToDoTasks,
+             .updateTask:
             return .post
         }
     }
@@ -37,7 +40,8 @@ extension YuHanApi: TargetType {
         switch self {
         case .login,
              .getOption,
-             .getToDoTasks:
+             .getToDoTasks,
+             .updateTask:
             return ["Content-Type": "application/json"]
         }
     }
@@ -51,6 +55,8 @@ extension YuHanApi: TargetType {
             params = request.parameters
         case .getToDoTasks(let request):
             params = request.parameters
+        case .updateTask(let request):
+            params = request.parameters
         }
         return params
     }
@@ -59,7 +65,8 @@ extension YuHanApi: TargetType {
         switch self {
         case .login,
              .getOption,
-             .getToDoTasks:
+             .getToDoTasks,
+             .updateTask:
             return JSONEncoding.default
         }
     }
@@ -68,7 +75,8 @@ extension YuHanApi: TargetType {
         switch self {
         case .login,
              .getOption,
-             .getToDoTasks:
+             .getToDoTasks,
+             .updateTask:
             if let parameters = parameters {
                 return .requestParameters(parameters: parameters, encoding: parameterEncoding)
             }
@@ -83,6 +91,7 @@ extension YuHanApi: TargetType {
         case .login: data = Files.Json.Login
         case .getOption: data = Files.Json.GetOption
         case .getToDoTasks: data = Files.Json.GetToDoList
+        case .updateTask: data = Files.Json.UpdateTask
         }
         return data ?? Data()
     }
