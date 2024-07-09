@@ -21,3 +21,7 @@
 "Edit_SubTask_Placeholder" = "請選擇子任務";
 "Edit_Description" = "任務描述";
 "Edit_Description_Placeholder" = "請輸入任務描述";
+
+"Task_Priority_Hight" = "高";
+"Task_Priority_Mid" = "中";
+"Task_Priority_Low" = "低";

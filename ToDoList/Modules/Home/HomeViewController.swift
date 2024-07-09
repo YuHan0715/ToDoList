@@ -40,6 +40,12 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
                 showPicker(pickerViewModel)
             })
             .store(in: &aryBindings)
+        btnAddList.publisher(for: .touchUpInside)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] in
+                showCreateTask()
+            })
+            .store(in: &aryBindings)
         tfSearch.textPublisher
             .receive(on: DispatchQueue.main)
             .replaceNil(with: "")
@@ -94,9 +100,14 @@ class HomeViewController: BaseViewModelController<HomeViewModel> {
             .store(in: &aryBindings)
     }
     
-    private func showEditTask() {
-        let editTaskViewModel = EditTaskViewControllerViewModel(provider: viewModel.provider)
+    private func showEditTask(_ taskInfo: TaskInfo? = nil ) {
+        let editTaskViewModel = EditTaskViewControllerViewModel(provider: viewModel.provider, type: .Edit, taskInfo: taskInfo)
         navigator.show(segue: .editTask(viewModel: editTaskViewModel), sender: self)
+    }
+    
+    private func showCreateTask() {
+        let createTaskViewModel = EditTaskViewControllerViewModel(provider: viewModel.provider, type: .Create)
+        navigator.show(segue: .editTask(viewModel: createTaskViewModel), sender: self)
     }
     
     private func showPicker(_ pickerViewModel: PickerViewModel) {
@@ -110,8 +121,8 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("-----didSelectRowAt-----")
-        showEditTask()
+        let selectedTask = viewModel.aryDisplayTask[indexPath.row]
+        showEditTask(viewModel.aryAllTasks.first(where: { $0.taskId == selectedTask.taskInfo.taskId }))
     }
 }
 
@@ -138,7 +149,8 @@ extension HomeViewController: UITableViewDataSource {
         deleteAction.backgroundColor = .systemRed
         
         let editAction = UIContextualAction(style: .normal, title: "edit") { (action, view, completionHandler) in
-            self.showEditTask()
+            let selectedTask = self.viewModel.aryDisplayTask[indexPath.row]
+            self.showEditTask(self.viewModel.aryAllTasks.first(where: { $0.taskId == selectedTask.taskInfo.taskId }))
             completionHandler(true)
         }
         editAction.backgroundColor = .darkGray

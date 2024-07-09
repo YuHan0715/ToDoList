@@ -39,12 +39,23 @@ struct TaskInfo: Decodable, Encodable {
     let subtasks: [String]
 }
 
-enum TaskPriority: String, Codable {
+enum TaskPriority: String, Codable, CaseIterable {
     case High = "0"
     
     case Medium = "1"
     
     case Low = "2"
+    
+    var title: String {
+        switch self {
+        case .High:
+            return i18n.Task.Priority_Hight
+        case .Medium:
+            return i18n.Task.Priority_Mid
+        case .Low:
+            return i18n.Task.Priority_Low
+        }
+    }
 }
 
 enum TaskStatus: String, Codable {

@@ -37,22 +37,85 @@ class EditTaskViewController: BaseViewModelController<EditTaskViewControllerView
         
         lbTaskDueDate.text = i18n.Edit.DueDate
         lbTaskSelectDueDate.text = i18n.Edit.DueDate_Placeholder
+        lbTaskSelectDueDate.setPlaceholderStyle()
         
         lbTaskCategory.text = i18n.Edit.Category
         lbTaskSelectCategory.text = i18n.Edit.Category_Placeholder
+        lbTaskSelectCategory.setPlaceholderStyle()
         
         lbTaskPriority.text = i18n.Edit.Priority
         lbTaskSelectPriority.text = i18n.Edit.Priority_Placeholder
+        lbTaskSelectPriority.setPlaceholderStyle()
     
         lbSubTask.text = i18n.Edit.SubTask
         lbSelectSubTask.text = i18n.Edit.SubTask_Placeholder
+        lbSelectSubTask.setPlaceholderStyle()
         
         lbTaskDescription.text = i18n.Edit.Description
         txvTaskDescription.text = i18n.Edit.Description_Placeholder
+        txvTaskDescription.setPlaceholderStyle()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.getListProcess()
     }
     
     override func bindViewModel() {
         super.bindViewModel()
+        
+        btnTaskCategory.publisher(for: .touchUpInside)
+        .receive(on: DispatchQueue.main)
+        .sink(receiveValue: { [unowned self] in
+            guard let pickerViewModel = viewModel.categoryPickerViewModel else { return } // TODO: Show aler to description category optsions is empty
+            showPicker(pickerViewModel)
+        })
+        .store(in: &aryBindings)
+        
+        btnTaskPriority.publisher(for: .touchUpInside)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] in
+                guard let pickerViewModel = viewModel.priorityPickerViewModel else { return } // TODO: show aler to description priority options is empty
+                showPicker(pickerViewModel)
+            })
+            .store(in: &aryBindings)
+        btnSubTask.publisher(for: .touchUpInside)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] in
+                guard let pickerViewModel = viewModel.subTaskPickerViewModel else { return } // TODO: show alert to description sub task is empty
+                showPicker(pickerViewModel)
+            })
+            .store(in: &aryBindings)
+        
+        viewModel.$selectedCategory
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] selectedCategory in
+                guard let selectedCategory = selectedCategory, !selectedCategory.categoryName.isEmpty else { return }
+                lbTaskSelectCategory.text = selectedCategory.categoryName
+                lbTaskSelectCategory.setNomalStyle()
+            })
+            .store(in: &aryBindings)
+        
+        viewModel.$selectedPriority
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] selectedPriority in
+                guard let selectedPriority = selectedPriority else { return }
+                lbTaskSelectPriority.text = selectedPriority.title
+                lbTaskSelectPriority.setNomalStyle()
+            })
+            .store(in: &aryBindings)
+        
+        viewModel.$selectedSubTask
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] selectedSubTask in
+                guard let selectedSubTask = selectedSubTask else { return }
+                lbSelectSubTask.text = selectedSubTask.title
+                lbSelectSubTask.setNomalStyle()
+            })
+            .store(in: &aryBindings)
     }
-
+    
+    private func showPicker(_ pickerViewModel: PickerViewModel) {
+        navigator.show(segue: .picker(viewModel: pickerViewModel), sender: self, transition: .alert)
+    }
 }

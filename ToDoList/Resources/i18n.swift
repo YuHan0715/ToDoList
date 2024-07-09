@@ -16,6 +16,12 @@ struct i18n {
         static var Error_Title: String { _i18n("Alert_Error_Title") }
         static var Confirm_Title: String { _i18n("Alert_Confirm_Title") }
     }
+    
+    struct Task {
+        static var Priority_Hight: String { _i18n("Task_Priority_Hight") }
+        static var Priority_Mid: String { _i18n("Task_Priority_Mid") }
+        static var Priority_Low: String { _i18n("Task_Priority_Low") }
+    }
 
     struct Login {
         static var Account_Placeholder: String { _i18n("Login_Account_Placeholder") }
