@@ -31,6 +31,8 @@
 		56A7DD3A2C33699F00E6A30D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7DD392C33699F00E6A30D /* Date+Extension.swift */; };
 		56B4DE462C37D56E00A51CC3 /* UpdateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */; };
 		56B4DE482C37D7FE00A51CC3 /* UpdateTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */; };
+		56D0AB6D2C3D8F2A00292ABD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D0AB6C2C3D8F2A00292ABD /* UILabel+Extension.swift */; };
+		56D0AB6F2C3D904900292ABD /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D0AB6E2C3D904900292ABD /* UITextView+Extension.swift */; };
 		56DA70942C3B510600CA14CE /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DA70922C3B510600CA14CE /* EditTaskViewController.swift */; };
 		56DA70952C3B510600CA14CE /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DA70932C3B510600CA14CE /* EditTaskViewController.xib */; };
 		56DA70972C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DA70962C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift */; };
@@ -100,6 +102,8 @@
 		56A7DD392C33699F00E6A30D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		56B4DE452C37D56E00A51CC3 /* UpdateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTask.swift; sourceTree = "<group>"; };
 		56B4DE472C37D7FE00A51CC3 /* UpdateTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UpdateTask.json; sourceTree = "<group>"; };
+		56D0AB6C2C3D8F2A00292ABD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		56D0AB6E2C3D904900292ABD /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		56DA70922C3B510600CA14CE /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		56DA70932C3B510600CA14CE /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTaskViewController.xib; sourceTree = "<group>"; };
 		56DA70962C3B511B00CA14CE /* EditTaskViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewControllerViewModel.swift; sourceTree = "<group>"; };
@@ -379,6 +383,8 @@
 				56E238212C30356600B9D1EF /* UIColor+Extension.swift */,
 				56A7DD372C33661200E6A30D /* String+Extension.swift */,
 				56A7DD392C33699F00E6A30D /* Date+Extension.swift */,
+				56D0AB6C2C3D8F2A00292ABD /* UILabel+Extension.swift */,
+				56D0AB6E2C3D904900292ABD /* UITextView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -563,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D0AB6F2C3D904900292ABD /* UITextView+Extension.swift in Sources */,
 				56EE2EEA2C2A280B00C0E2F5 /* LoginViewController.swift in Sources */,
 				56A7DD3A2C33699F00E6A30D /* Date+Extension.swift in Sources */,
 				56EE338C2C299B2000E67746 /* CoreManager.swift in Sources */,
@@ -571,6 +578,7 @@
 				56EE338A2C299B2000E67746 /* BaseViewModel.swift in Sources */,
 				56EE33502C299A7000E67746 /* RestApi.swift in Sources */,
 				56EE338D2C299B2000E67746 /* LanguageManager.swift in Sources */,
+				56D0AB6D2C3D8F2A00292ABD /* UILabel+Extension.swift in Sources */,
 				56A7DD362C33648C00E6A30D /* DateManager.swift in Sources */,
 				56EE338F2C299B2000E67746 /* SecurityManager.swift in Sources */,
 				56EE335A2C299A7000E67746 /* Navigator.swift in Sources */,
