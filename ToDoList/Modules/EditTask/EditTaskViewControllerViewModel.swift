@@ -17,6 +17,10 @@ class EditTaskViewControllerViewModel: BaseViewModel {
     @Published var selectedCategory: CategoryInfo?
     @Published var selectedPriority: TaskPriority?
     @Published var selectedSubTask: TaskInfo?
+    @Published var selectedDueDate: String?
+    @Published var canInitView = PassthroughSubject<Void, Never>()
+    var strTaskTitle: String?
+    var strTaskDescription: String?
     var type: TaskEditType
     var taskInfo: TaskInfo?
     
@@ -26,6 +30,7 @@ class EditTaskViewControllerViewModel: BaseViewModel {
     var categoryPickerViewModel: PickerViewModel?
     var priorityPickerViewModel: PickerViewModel?
     var subTaskPickerViewModel: PickerViewModel?
+    
     
     var aryBindings = Set<AnyCancellable>()
     
@@ -62,6 +67,7 @@ class EditTaskViewControllerViewModel: BaseViewModel {
                 createCategoryPickerModel()
                 aryAllTasks = getTaskListRespsone.tasks.filter({ $0.taskId != taskInfo?.taskId })
                 createSubTaskPickerModel()
+                canInitView.send(())
                 initValue()
             }))
     }
@@ -100,5 +106,6 @@ class EditTaskViewControllerViewModel: BaseViewModel {
         selectedCategory = aryCategoryOptions.first(where: { $0.categoryCode == taskInfo?.category })
         selectedPriority = aryTaskPriorityOptions.first(where: { $0 == taskInfo?.priority })
         selectedSubTask = aryAllTasks.first(where: { $0.taskId == taskInfo?.subtasks.first })
+        selectedDueDate = taskInfo?.dueDate
     }
 }

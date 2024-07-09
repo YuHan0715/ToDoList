@@ -54,6 +54,8 @@ class EditTaskViewController: BaseViewModelController<EditTaskViewControllerView
         lbTaskDescription.text = i18n.Edit.Description
         txvTaskDescription.text = i18n.Edit.Description_Placeholder
         txvTaskDescription.setPlaceholderStyle()
+        
+        txvTaskDescription.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,12 +81,19 @@ class EditTaskViewController: BaseViewModelController<EditTaskViewControllerView
                 showPicker(pickerViewModel)
             })
             .store(in: &aryBindings)
+        
         btnSubTask.publisher(for: .touchUpInside)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] in
                 guard let pickerViewModel = viewModel.subTaskPickerViewModel else { return } // TODO: show alert to description sub task is empty
                 showPicker(pickerViewModel)
             })
+            .store(in: &aryBindings)
+        
+        tfTaskTitle.textPublisher
+            .receive(on: DispatchQueue.main)
+            .filter({ $0?.isEmpty != false })
+            .assign(to: \.strTaskTitle, on: viewModel)
             .store(in: &aryBindings)
         
         viewModel.$selectedCategory
@@ -113,9 +122,35 @@ class EditTaskViewController: BaseViewModelController<EditTaskViewControllerView
                 lbSelectSubTask.setNomalStyle()
             })
             .store(in: &aryBindings)
+        
+        viewModel.$selectedDueDate
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] selectedDueDate in
+                guard let selectedDueDate = selectedDueDate else { return }
+                lbTaskSelectDueDate.text = selectedDueDate
+                lbTaskSelectDueDate.setNomalStyle()
+            })
+            .store(in: &aryBindings)
+        
+        viewModel.canInitView
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] in
+                tfTaskTitle.text = viewModel.taskInfo?.title
+                guard let taskDescription = viewModel.strTaskDescription else { return }
+                txvTaskDescription.text = taskDescription
+                txvTaskDescription.setNomalStyle()
+            })
+            .store(in: &aryBindings)
     }
     
     private func showPicker(_ pickerViewModel: PickerViewModel) {
         navigator.show(segue: .picker(viewModel: pickerViewModel), sender: self, transition: .alert)
+    }
+}
+
+
+extension EditTaskViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.strTaskDescription = textView.text
     }
 }
